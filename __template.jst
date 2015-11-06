@@ -1,0 +1,49 @@
+<!DOCTYPE  html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="/gfm.css">
+        <title></title>
+    </head>
+    <body>  
+        <div id="header">
+            <div id="navigator" style="font-size:0.8em"></div>
+            <span id="title" style="font-size:1.75em"></span>
+            <hr style="border-width: 2px 0 0 0"/>
+        </div>
+
+        <article class="markdown-body">
+            <%=content%>
+        </article>
+
+        <script type="text/javascript" language="javascript">
+            // set title
+            var title=location.pathname.match(/^.*\/(.*)\.html/)[1];
+            document.title=title;
+            document.getElementById('title').innerText=title;
+
+            // generate navigator
+            navi=document.getElementById('navigator');
+            navi.appendChild(linkdom('~', '/'));
+            navi.innerHTML += ' / ';
+
+            url='';
+            dirs=location.pathname.split('/');
+            dirs.shift(); // remove the first element:''
+            console.log(dirs);
+            dirs.forEach(function(dir) {
+                url+='/'+dir;
+                navi.appendChild(linkdom(dir, url));
+                var isHTML = /\.html$/;
+                if (!isHTML.test(dir)) navi.innerHTML += ' / ';
+            });
+
+            function linkdom(dirname, url) {
+                var elem = document.createElement('a');
+                elem.setAttribute('href', url);
+                elem.innerText=dirname;
+                return elem;
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "mdServer",
+  "description": "",
+  "dependencies": {
+    "gfm.css": "*",
+    "grunt": "*",
+    "grunt-contrib-connect": "*",
+    "grunt-este-watch": "*",
+    "grunt-markdown": "*"
+  }
+}
