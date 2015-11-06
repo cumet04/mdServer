@@ -23,7 +23,8 @@ module.exports = function(grunt) {
                 }
             },
             md: function(filepath) {
-                grunt.config(['markdown', 'all', 'src'], filepath.replace(/^\.\.\//, ''));
+                var target=filepath.replace(new RegExp('^'+src_dir+'/'), '');
+                grunt.config(['markdown', 'all', 'src'], target);
                 return 'markdown';
             }
         },
